@@ -11,7 +11,9 @@ npx degit https://github.com/nicolasdao/template-empty-python.git YOUR_PROJECT_N
 Then run, the following commands to initialize this project:
 
 ```
-cd YOUR_PROJECT_NAME && python3 -m venv .venv
+cd YOUR_PROJECT_NAME; \
+python3 -m venv .venv; \
+source .venv/bin/activate;
 ```
 
 If you're using Linux or Mac, all those commands can be combined as follow:
@@ -21,6 +23,7 @@ func() { \
 	npx degit https://github.com/nicolasdao/template-empty-python.git $1; \
 	cd $1; \
 	python3 -m venv .venv; \
+	source .venv/bin/activate;
 }; func YOUR_PROJECT_NAME
 ```
 
