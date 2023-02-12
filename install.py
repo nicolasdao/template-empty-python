@@ -42,6 +42,7 @@ def getItems(s=''):
 def getConfig(config, section, property):
 	val = '' if section not in config or property not in config[section] else config[section][property]	
 	val = val if val else ''
+	return val
 
 def initConfig(config, section, property):
 	'''Makes sure that config[section][property] exists.'''
@@ -91,24 +92,42 @@ def main():
 			if existingDevName:
 				devChanged = True
 				devDeps.remove(existingDevName)
-			# uninstall(name)
+			uninstall(name)
 		else:
 			if existingProdName or existingDevName:
 				pass
-			elif dev:
-				devChanged = True
-				devDeps.append(cleanName)
+			if dev:
+				if existingDevName or existingProdName:
+					pass
+				else:
+					devChanged = True
+					devDeps.append(cleanName)
 			else:
-				prodChanged = True
-				prodDeps.append(cleanName)
-			# install(lib)
+				if existingProdName:
+					pass
+				else:
+					if existingDevName:
+						# If the dep is already in dev, remove it from there and add it to prod
+						devChanged = True
+						devDeps.remove(existingDevName)
+						uninstall(name)
+						
+					prodChanged = True
+					prodDeps.append(cleanName)
+			install(lib)
 
 	if prodChanged:
 		initConfig(config, PROD_SECTION, PROD_SECTION_REQUIRE)
-		config[PROD_SECTION][PROD_SECTION_REQUIRE] = '\n' + '\n'.join(prodDeps)
+		if len(prodDeps):
+			config[PROD_SECTION][PROD_SECTION_REQUIRE] = '\n' + '\n'.join(prodDeps)
+		else:
+			del config[PROD_SECTION][PROD_SECTION_REQUIRE]
 	if devChanged:
 		initConfig(config, DEV_SECTION, DEV_SECTION_REQUIRE)
-		config[PROD_SECTION][PROD_SECTION_REQUIRE] = '\n' + '\n'.join(prodDeps)
+		if len(devDeps):
+			config[DEV_SECTION][DEV_SECTION_REQUIRE] = '\n' + '\n'.join(devDeps)
+		else:
+			del config[DEV_SECTION][DEV_SECTION_REQUIRE]
 
 	with open(SETUP_FILE, 'w') as configfile:
 		config.write(configfile)

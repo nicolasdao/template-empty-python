@@ -31,8 +31,9 @@ func() { \
 
 | Command | Description |
 |:--------|:------------|
-| `make install` | Install the dependencies defined in the `requirements.txt` |
-| `make i lib="numpy requests"` | Wrapper around `pip install` followed by `pip freeze` |
+| `make install` | Install the dependencies defined in the `requirements.txt`. This file contains all the dependencies (i.e., both prod and dev). |
+| `make install-prod` | Install the dependencies defined in the `prod-requirements.txt`. This file only contains the production dependencies. |
+| `make i lib="numpy requests"` | Wrapper around `pip install` followed by `pip freeze`. It also updates the `setup.cfg`'s section `[options]` |
 | `make u lib="numpy requests"` | Wrapper around `pip uninstall` followed by `pip freeze` |
 | `make n` | Starts a Jupyter notebook for this project |
 
