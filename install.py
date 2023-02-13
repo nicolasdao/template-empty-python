@@ -235,7 +235,7 @@ def getDiffLines(oldContent='', newContent='', mode='new'):
 	oldLines = oldContent.split('\n')
 	newLines = newContent.split('\n')
 	lines = []
-	ls1, ls2 = (newLines, oldContent) if mode == 'new' else (oldContent, newLines)
+	ls1, ls2 = (newLines, oldLines) if mode == 'new' else (oldLines, newLines)
 	for line in ls1:
 		if line not in ls2:
 			lines.append(line)
