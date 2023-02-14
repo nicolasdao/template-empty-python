@@ -19,7 +19,8 @@ cd YOUR_PROJECT_NAME; \
 python3 -m venv .venv; \
 source .venv/bin/activate; \
 pip install --upgrade pip; \
-pip install -r requirements.txt
+pip install -r requirements.txt; \
+mv ./src/empty-python ./src/YOUR_PROJECT_NAME
 ```
 
 If you're using Linux or Mac, all those commands can be combined as follow:
@@ -31,7 +32,8 @@ func() { \
 	python3 -m venv .venv; \
 	source .venv/bin/activate; \
 	pip install --upgrade pip; \
-	pip install -r requirements.txt;
+	pip install -r requirements.txt; \
+	mv ./src/empty-python ./src/$1
 }; func YOUR_PROJECT_NAME
 ```
 
