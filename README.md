@@ -1,6 +1,10 @@
 # EMPTY PYTHON3 PROJECT
 
-This empty project helps getting started with Python3
+This (almost) empty project helps getting started with Python3. This project contains 2 dev dependencies:
+- `black` to clean and format your code to follow the Python conventions.
+- `flake8` to lint.
+
+Those 2 tools are run sequentially via the `make t` command. To learn more this command does and how to configure it, please refer to the [Linting and formatting](#linting-and-formatting) section.
 
 To install this template:
 
@@ -14,7 +18,8 @@ Then run, the following commands to initialize this project:
 cd YOUR_PROJECT_NAME; \
 python3 -m venv .venv; \
 source .venv/bin/activate; \
-pip install --upgrade pip
+pip install --upgrade pip; \
+pip install -r requirements.txt
 ```
 
 If you're using Linux or Mac, all those commands can be combined as follow:
@@ -25,9 +30,19 @@ func() { \
 	cd $1; \
 	python3 -m venv .venv; \
 	source .venv/bin/activate; \
-	pip install --upgrade pip;
+	pip install --upgrade pip; \
+	pip install -r requirements.txt;
 }; func YOUR_PROJECT_NAME
 ```
+
+# Table of contents
+
+> * [Dev](#dev)
+>	- [CLI commands](#cli-commands)
+>	- [Linting and formatting](#linting-and-formatting)
+
+# Dev
+## CLI commands
 
 `make` commands:
 
@@ -40,3 +55,19 @@ func() { \
 | `make u lib="numpy requests"` | Wrapper around `pip uninstall` followed by `pip freeze`. Both `requirements.txt` (dev + prod) and `prod-requirements.txt` (prod) are updated. |
 | `make n` | Starts a Jupyter notebook for this project |
 
+## Linting and formatting
+
+```
+make t
+```
+
+This command runs the following two python executables:
+
+```
+black ./
+flake8 ./
+```
+
+- `black` formats all the `.py` files, while `flake8` lints them. 
+- `black` is configured in the `pyproject.toml` file under the `[tool.black]` section.
+- `flake8` is configured in the `setup.cfg` file under the `[flake8]` section.

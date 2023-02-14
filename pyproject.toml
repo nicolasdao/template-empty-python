@@ -1,3 +1,15 @@
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+[tool.black]
+extend-exclude = '''
+/(
+  # The following are specific to Black, you probably don't want those.
+  | .git
+  | __pycache__
+  | .venv
+  | build
+  | dist
+)/
+'''
