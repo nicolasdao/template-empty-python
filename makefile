@@ -10,3 +10,5 @@ u:
 	python3 install.py $(lib) -u
 n:
 	jupyter notebook
+test:
+	flake8 install.py

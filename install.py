@@ -20,7 +20,7 @@ DEV_SECTION_REQUIRE = 'dev'
 _, *libs = sys.argv
 
 # Exists if no inputs were provided
-if not(len(libs)):
+if not (len(libs)):
 	exit()
 
 # Filters the inputs between libraries and options (e.g., -D for dev dependencies)
@@ -31,9 +31,9 @@ for lib in libs:
 	tar.append(lib)
 
 def getItems(s=''):
+	'''Gets the unique items in a list where the separator is a new line'''
 	if not s:
 		return ([],[])
-	'''Gets the unique items in a list where the separator is a new line'''
 	items = list(set(x for x in re.split('\n', s) if x))
 	names = [getLibNameOnly(x) for x in items]
 	return (items, names)
@@ -67,8 +67,7 @@ def getPackageDeps(lib):
 	return [getLibNameOnly(str(r)) for r in _package.requires()]
 
 def main():
-	'''Main program'''
-	
+	'''Main program'''	
 	# Reads the 'setup.cfg' file
 	config = configparser.ConfigParser()
 	config.read(SETUP_FILE)
@@ -272,3 +271,5 @@ getDeletedLines = partial(getDiffLines, mode='deleted')
 
 if __name__ == '__main__':
 	main()
+
+
