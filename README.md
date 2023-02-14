@@ -1,10 +1,12 @@
 # EMPTY PYTHON3 PROJECT
 
-This (almost) empty project helps getting started with Python3. This project contains 2 dev dependencies:
+This (almost) empty project helps getting started with Python3. This project contains four dev dependencies:
 - `black` to clean and format your code to follow the Python conventions.
 - `flake8` to lint.
+- `build` to optionally build your package.
+- `twine` to optionally publish your package to PyPI.
 
-Those 2 tools are run sequentially via the `make t` command. To learn more this command does and how to configure it, please refer to the [Linting and formatting](#linting-and-formatting) section.
+`black` and `flake8` are executed sequentially via the `make t` command, while `build` is executed via the `make b` command and `twine` is executed via `make p`. To learn more about what those commands do and how to configure them, please refer to the [Linting and formatting](#linting-and-formatting) and the [Building and distributing your package](#building-and-distributing-your-package) sections.
 
 To install this template:
 
@@ -42,6 +44,7 @@ func() { \
 > * [Dev](#dev)
 >	- [CLI commands](#cli-commands)
 >	- [Linting and formatting](#linting-and-formatting)
+>	- [Building and distributing your package](#building-and-distributing-your-package)
 
 # Dev
 ## CLI commands
@@ -73,3 +76,28 @@ flake8 ./
 - `black` formats all the `.py` files, while `flake8` lints them. 
 - `black` is configured in the `pyproject.toml` file under the `[tool.black]` section.
 - `flake8` is configured in the `setup.cfg` file under the `[flake8]` section.
+
+## Building and distributing your package
+
+To build your package, run:
+
+```
+make b
+```
+
+This command is a wrapper around `python3 -m build`.
+
+To build and publish your package to https://pypi.org, run:
+
+```
+make p
+```
+
+This command is a wrapper around the following commands:
+
+```
+python3 -m build; \
+twine upload dist/*
+```
+
+
