@@ -127,7 +127,7 @@ pytest --capture=no --verbose tests
 - `black` formats all the `.py` files, while `flake8` lints them. 
 - `black` is configured in the `pyproject.toml` file under the `[tool.black]` section.
 - `flake8` is configured in the `setup.cfg` file under the `[flake8]` section.
-- `pytest` runs all the `.py` files located under the `tests` folder. The `--capture=no` options allows `print` commands to send outputs to the terminal. The `--verbose` option displays each test.
+- `pytest` runs all the `.py` files located under the `tests` folder. The `--capture=no` options allows the `print` function to send outputs to the terminal. The `--verbose` option displays each test.
 
 ## Building and distributing this package
 
