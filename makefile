@@ -18,3 +18,4 @@ p:
 t:
 	black ./
 	flake8 ./
+	pytest --capture=no --verbose tests

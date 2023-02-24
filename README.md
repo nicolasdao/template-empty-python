@@ -1,16 +1,19 @@
 # EMPTY PYTHON3 PROJECT
 
-This (almost) empty project helps getting started with Python3. This project contains five dev dependencies:
+> Delete this text until the Table of contents.
+
+This (almost) empty project helps getting started with Python3. This project contains six dev dependencies:
 - `easypipinstall` to maintain dependencies in a similar fashion to NPM.
 - `black` to clean and format your code to follow the Python conventions.
 - `flake8` to lint.
+- `pytest` to run unit and functional tests.
 - `build` to optionally build your package.
 - `twine` to optionally publish your package to PyPI.
 
-`black` and `flake8` are executed sequentially via the `make t` command, while `build` is executed via the `make b` command and `twine` is executed via `make p` or `make bp` (build and then publish). To learn more about what those commands do and how to configure them, please refer to these sections: 
+`black`, `flake8` and `pytest` are executed sequentially via the `make t` command, while `build` is executed via the `make b` command and `twine` is executed via `make p` or `make bp` (build and then publish). To learn more about what those commands do and how to configure them, please refer to these sections: 
 - [Install dependencies with `easypipinstall`](#install-dependencies-with-easypipinstall)
-- [Linting and formatting](#linting-and-formatting)
-- [Building and distributing your package](#building-and-distributing-your-package)
+- [Linting, formatting and testing](#linting-formatting-and-testing)
+- [Building and distributing this package](#building-and-distributing-this-package)
 
 To install this template:
 
@@ -48,8 +51,8 @@ func() { \
 > * [Dev](#dev)
 >	- [CLI commands](#cli-commands)
 >	- [Install dependencies with `easypipinstall`](#install-dependencies-with-easypipinstall)
->	- [Linting and formatting](#linting-and-formatting)
->	- [Building and distributing your package](#building-and-distributing-your-package)
+>	- [Linting, formatting and testing](#linting-formatting-and-testing)
+>	- [Building and distributing this package](#building-and-distributing-this-package)
 
 # Dev
 ## CLI commands
@@ -107,24 +110,26 @@ easyu flake8
 
 This uninstalls `flake8` as well as all its dependencies. Those dependencies are uninstalled only if they are not used by other project dependencies. The `setup.cfg` and `requirements.txt` are automatically updated accordingly.
 
-## Linting and formatting
+## Linting, formatting and testing
 
 ```
 make t
 ```
 
-This command runs the following two python executables:
+This command runs the following three python executables:
 
 ```
 black ./
 flake8 ./
+pytest --capture=no --verbose tests 
 ```
 
 - `black` formats all the `.py` files, while `flake8` lints them. 
 - `black` is configured in the `pyproject.toml` file under the `[tool.black]` section.
 - `flake8` is configured in the `setup.cfg` file under the `[flake8]` section.
+- `pytest` runs all the `.py` files located under the `tests` folder. The `--capture=no` options allows `print` commands to send outputs to the terminal. The `--verbose` option displays each test.
 
-## Building and distributing your package
+## Building and distributing this package
 
 To build your package, run:
 
