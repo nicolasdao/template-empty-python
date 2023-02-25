@@ -4,7 +4,10 @@
 # This source code is licensed under the BSD-style license found in the
 # LICENSE file in the root directory of this source tree.
 
-# - To skip a test, use this decoractor: @pytest.mark.skip() (doc: https://docs.pytest.org/en/latest/how-to/skipping.html)
+# - To skip a test, use this decoractor (doc: https://docs.pytest.org/en/latest/how-to/skipping.html):
+#
+#       @pytest.mark.skip()
+#
 # - To only run a single test function, in the `makefile`, replace this command:
 #
 #       pytest --capture=no --verbose tests

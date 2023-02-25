@@ -1,3 +1,5 @@
+testpath='tests'
+
 b:
 	rm -rf dist; \
 	rm -rf src/*.egg-info; \
@@ -18,4 +20,4 @@ p:
 t:
 	black ./
 	flake8 ./
-	pytest --capture=no --verbose tests
+	pytest --capture=no --verbose $(testpath)

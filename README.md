@@ -52,6 +52,9 @@ func() { \
 >	- [CLI commands](#cli-commands)
 >	- [Install dependencies with `easypipinstall`](#install-dependencies-with-easypipinstall)
 >	- [Linting, formatting and testing](#linting-formatting-and-testing)
+>		- [Ignoring `flake8` errors](#ignoring-flake8-errors)
+>		- [Skipping tests](#skipping-tests)
+>		- [Executing a specific test only](#executing-a-specific-test-only)
 >	- [Building and distributing this package](#building-and-distributing-this-package)
 
 # Dev
@@ -61,7 +64,7 @@ func() { \
 
 | Command | Description |
 |:--------|:------------|
-| `make b` | Builds the package. |
+|-make-b` | Builds the package. |
 | `make p` | Publish the package to https://pypi.org. |
 | `make bp` | Builds the package and then publish it to https://pypi.org. |
 | `make install` | Install the dependencies defined in the `requirements.txt`. This file contains all the dependencies (i.e., both prod and dev). |
@@ -121,13 +124,49 @@ This command runs the following three python executables:
 ```
 black ./
 flake8 ./
-pytest --capture=no --verbose tests 
+pytest --capture=no --verbose $(testpath)
 ```
 
 - `black` formats all the `.py` files, while `flake8` lints them. 
 - `black` is configured in the `pyproject.toml` file under the `[tool.black]` section.
 - `flake8` is configured in the `setup.cfg` file under the `[flake8]` section.
-- `pytest` runs all the `.py` files located under the `tests` folder. The `--capture=no` options allows the `print` function to send outputs to the terminal. The `--verbose` option displays each test.
+- `pytest` runs all the `.py` files located under the `tests` folder. The meaning of each option is as follow:
+	- `--capture=no` allows the `print` function to send outputs to the terminal. 
+	- `--verbose` displays each test. Without it, the terminal would only display the count of how many passed and failed.
+	- `$(testpath)` references the `testpath` variable. This variable is set to `tests` (i.e., the `tests` folder) by default. This allows to override this default variable with something else (e.g., a specific test to only run that one).
+
+### Ignoring `flake8` errors
+
+This project is pre-configured to ignore certain `flake8` errors. To add or remove `flake8` errors, update the `extend-ignore` property under the `[flake8]` section in the `setup.cfg` file.
+
+### Skipping tests
+
+In your test file, add the `@pytest.mark.skip()` decorator. For example:
+
+```python
+import pytest
+
+@pytest.mark.skip()
+def test_self_describing_another_test_name():
+	# ... your test here
+```
+
+### Executing a specific test only
+
+One of the output of the `make t` command is list of all the test that were run (PASSED and FAILED). For example:
+
+```
+tests/error/test_catch_errors.py::test_catch_errors_basic PASSED
+tests/error/test_catch_errors.py::test_catch_errors_wrapped PASSED
+tests/error/test_catch_errors.py::test_catch_errors_nested_errors PASSED
+tests/error/test_catch_errors.py::test_catch_errors_StackedException_arbitrary_inputs FAILED
+```
+
+To execute a specific test only, add the `testpath` option with the test path. For example, to execute the only FAILED test in the example above, run this command:
+
+```
+make t testpath=tests/error/test_catch_errors.py::test_catch_errors_StackedException_arbitrary_inputs
+```
 
 ## Building and distributing this package
 
