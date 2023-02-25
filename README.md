@@ -64,7 +64,7 @@ func() { \
 
 | Command | Description |
 |:--------|:------------|
-|-make-b` | Builds the package. |
+| `make b` | Builds the package. |
 | `make p` | Publish the package to https://pypi.org. |
 | `make bp` | Builds the package and then publish it to https://pypi.org. |
 | `make install` | Install the dependencies defined in the `requirements.txt`. This file contains all the dependencies (i.e., both prod and dev). |
