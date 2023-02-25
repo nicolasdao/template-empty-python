@@ -174,6 +174,8 @@ make t testpath=tests/error/test_catch_errors.py::test_catch_errors_StackedExcep
 
 ## Building and distributing this package
 
+> Tl;dr, `make bp` builds and publishes your package to https://pypi.org.
+
 To build your package, run:
 
 ```
@@ -194,6 +196,20 @@ This command is a wrapper around the following commands:
 python3 -m build; \
 twine upload dist/*
 ```
+
+Those two steps have been bundled in a single command:
+
+```
+make bp
+```
+
+To test your package locally before deploying it to https://pypi.org, you can run build and install it locally with this command:
+
+```
+make bi
+```
+
+This command buils the package and follows with `pip install -e .`.
 
 # FAQ
 
