@@ -63,10 +63,10 @@ func() { \
 # Dev
 ## CLI commands
 
-`make` commands:
-
 | Command | Description |
 |:--------|:------------|
+| `source .venv/bin/activate` | Activate the virtual environment |
+| `deactivate` | Deactivate the virtual environment |
 | `make b` | Builds the package. |
 | `make p` | Publish the package to https://pypi.org. |
 | `make bp` | Builds the package and then publish it to https://pypi.org. |
