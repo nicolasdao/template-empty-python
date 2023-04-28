@@ -175,7 +175,9 @@ make t testpath=tests/error/test_catch_errors.py::test_catch_errors_StackedExcep
 
 ## Building and distributing this package
 
-> Tl;dr, `make bp` builds and publishes your package to https://pypi.org.
+> Tl;dr, Update the version in the `setup.cfg` file, and then run `make bp` to build and publish your package to https://pypi.org.
+
+__IMPORTANT:__ First, make sure you've updated the version in the the `setup.cfg` file.
 
 To build your package, run:
 
@@ -203,6 +205,8 @@ Those two steps have been bundled in a single command:
 ```
 make bp
 ```
+
+> __IMPORTANT:__ Don't forget to update the version in the the `setup.cfg` file.
 
 To test your package locally before deploying it to https://pypi.org, you can run build and install it locally with this command:
 
