@@ -74,7 +74,8 @@ func() { \
 | `make install` | Install the dependencies defined in the `requirements.txt`. This file contains all the dependencies (i.e., both prod and dev). |
 | `make install-prod` | Install the dependencies defined in the `prod-requirements.txt`. This file only contains the production dependencies. |
 | `make n` | Starts a Jupyter notebook for this project. |
-| `make t` | Formats adnd then lints the project. |
+| `make t` | Formats, lints and then unit tests the project. |
+| `make t testpath=<FULLY QUALIFIED TEST PATH>` | Foccuses the unit test on a specific test. For a concrete example, please refer to the [Executing a specific test only](#executing-a-specific-test-only) section. |
 | `easyi numpy` | Instals `numpy` and update `setup.cfg`, `prod-requirements.txt` and `requirements.txt`. |
 | `easyi flake8 -D` | Instals `flake8` and update `setup.cfg` and `requirements.txt`. |
 | `easyu numpy` | Uninstals `numpy` and update `setup.cfg`, `prod-requirements.txt` and `requirements.txt`. |
