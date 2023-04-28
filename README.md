@@ -49,6 +49,7 @@ func() { \
 # Table of contents
 
 > * [Dev](#dev)
+>	- [Getting started](#dev---getting-started)
 >	- [CLI commands](#cli-commands)
 >	- [Install dependencies with `easypipinstall`](#install-dependencies-with-easypipinstall)
 >	- [Linting, formatting and testing](#linting-formatting-and-testing)
@@ -61,10 +62,35 @@ func() { \
 > * [License](#license)
 
 # Dev
+## Dev - Getting started
+
+1. Clone this project:
+```shell
+git clone https://github.com/nicolasdao/template-empty-python.git
+```
+2. Browse to the root folder:
+```shell
+cd template-empty-python
+```
+3. Create a new virtual environment:
+```shell
+python3 -m venv .venv
+```
+4. Activate this virtual environment:
+```shell
+source .venv/bin/activate
+```
+
+To deactivate that virtual environment:
+```shell
+deactivate
+```
+
 ## CLI commands
 
 | Command | Description |
 |:--------|:------------|
+| `python3 -m venv .venv` | Create a new virtual environment. |
 | `source .venv/bin/activate` | Activate the virtual environment |
 | `deactivate` | Deactivate the virtual environment |
 | `make b` | Builds the package. |
